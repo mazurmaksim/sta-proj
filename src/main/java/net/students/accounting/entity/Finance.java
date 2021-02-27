@@ -12,15 +12,11 @@ public class Finance {
     @Column(name="id",unique = true, nullable = false)
     private Long id;
 
-    @Column(name="iin")
+    @Column(name="iin", length = 8)
     private String iin;
 
     @Column(name = "grant")
     private Double grant;
-
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "student_id", nullable = false)
-//    private Students students;
 
     public Finance(){}
 

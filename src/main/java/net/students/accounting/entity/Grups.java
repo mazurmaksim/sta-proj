@@ -1,11 +1,9 @@
 package net.students.accounting.entity;
 
 import javax.persistence.*;
-import java.io.Serializable;
-import java.util.List;
 
 @Entity
-@Table(name="grups")
+@Table(name="groups")
 public class Grups {
 
     @Id
@@ -13,9 +11,9 @@ public class Grups {
     @Column(name="id",unique = true, nullable = false)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "group")
-    private Students students;
+    @Column(name = "group_name", length = 10)
+    private String groupName;
+
 
     public void setId(Long id) {
         this.id = id;
@@ -23,14 +21,6 @@ public class Grups {
 
     public Long getId() {
         return id;
-    }
-
-    public Students getStudents() {
-        return students;
-    }
-
-    public void setStudents(Students students) {
-        this.students = students;
     }
 
     public Grups(){}
