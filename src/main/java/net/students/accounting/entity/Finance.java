@@ -1,13 +1,15 @@
 package net.students.accounting.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name="finance_info")
-public class Finance  extends AbstractEntity<Long> {
+public class Finance {
 
     @Id
-    @Column(unique = true, nullable = false)
+    @GeneratedValue
+    @Column(name="id",unique = true, nullable = false)
     private Long id;
 
     @Column(name="iin")
@@ -16,16 +18,11 @@ public class Finance  extends AbstractEntity<Long> {
     @Column(name = "grant")
     private Double grant;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "student_id", nullable = false)
-    private Students students;
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "student_id", nullable = false)
+//    private Students students;
 
     public Finance(){}
-
-    @Override
-    public Long getId() {
-        return null;
-    }
 
     public void setId(Long id) {
         this.id = id;
@@ -47,11 +44,11 @@ public class Finance  extends AbstractEntity<Long> {
         this.grant = grant;
     }
 
-    public Students getStudents() {
-        return students;
-    }
-
-    public void setStudents(Students students) {
-        this.students = students;
-    }
+//    public Students getStudents() {
+//        return students;
+//    }
+//
+//    public void setStudents(Students students) {
+//        this.students = students;
+//    }
 }

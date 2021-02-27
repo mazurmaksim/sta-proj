@@ -2,6 +2,7 @@ package net.students.accounting.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.security.acl.Group;
 import java.util.List;
 
 @Entity
@@ -9,7 +10,8 @@ import java.util.List;
 public class Students extends AbstractEntity<Long> {
 
     @Id
-    @Column(unique = true, nullable = false)
+    @GeneratedValue
+    @Column(name="id",unique = true, nullable = false)
     private Long id;
 
     @Column(name = "status", nullable = false)
@@ -21,19 +23,30 @@ public class Students extends AbstractEntity<Long> {
     @Column(name = "last_name")
     private String lastName;
 
+    @Column(name = "middle_name")
+    private String middleName;
+
     @Column(name = "age")
     private Integer age;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="st_group")
-    private Grups grups;
+    @OneToOne
+    @JoinColumn(foreignKey = @ForeignKey(name = "st_group"))
+    private Grups stGroup;
 
-    public Grups getGrups() {
-        return grups;
+    public Grups getStGroup() {
+        return stGroup;
     }
 
-    public void setGrups(Grups grups) {
-        this.grups = grups;
+    public void setStGroup(Grups stGroup) {
+        this.stGroup = stGroup;
+    }
+
+    public String getMiddleName() {
+        return middleName;
+    }
+
+    public void setMiddleName(String middleName) {
+        this.middleName = middleName;
     }
 
     public Integer getAge() {

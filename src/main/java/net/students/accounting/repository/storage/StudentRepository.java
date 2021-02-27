@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 @RepositoryDefinition(domainClass = Students.class, idClass = Long.class)
 public interface StudentRepository extends JpaRepository<Students, Long>{
-//    List<Students> findByCname(String cname);
-//    Students findById(Long id);
+   // Students findById(Long id);
     List<Students> findAll(Sort sort);
 }
