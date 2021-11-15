@@ -1,50 +1,46 @@
 package net.students.accounting.entity;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Entity
 @Table(name="finance_info")
 public class Finance {
 
     @Id
-    @GeneratedValue
-    @Column(name="id",unique = true, nullable = false)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id")
+    private Integer id;
 
-    @Column(name="iin", length = 8)
-    private String iin;
+    @Column(name="inn", length = 8)
+    private String inn;
 
-    @Column(name = "grant")
-    private Double grant;
+    @Column(name = "grants")
+    private Double grants;
 
     public Finance(){}
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public String getIin() {
-        return iin;
+    public Integer getId() {
+        return id;
     }
 
-    public void setIin(String iin) {
-        this.iin = iin;
+    public String getInn() {
+        return inn;
     }
 
-    public Double getGrant() {
-        return grant;
+    public void setInn(String iin) {
+        this.inn = iin;
     }
 
-    public void setGrant(Double grant) {
-        this.grant = grant;
+    public Double getGrants() {
+        return grants;
     }
 
-//    public Students getStudents() {
-//        return students;
-//    }
-//
-//    public void setStudents(Students students) {
-//        this.students = students;
-//    }
+    public void setGrants(Double grant) {
+        this.grants = grant;
+    }
+
 }
