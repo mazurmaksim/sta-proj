@@ -9,8 +9,8 @@ public class Student {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id",unique = true, nullable = false)
-    private Long id;
+    @Column(name="id")
+    private Integer id;
 
 //    @Column(name = "status", nullable = false)
 //    private String status;
@@ -27,16 +27,20 @@ public class Student {
 //    @Column(name = "age")
 //    private Integer age;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
     @JoinColumn(name = "group_id", referencedColumnName = "id")
     private Groups stGroup;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "finance_id", referencedColumnName = "id")
     private Finance finance;
 
-    public Long getId() {
+    public Integer getId() {
         return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Finance getFinance() {
@@ -93,10 +97,6 @@ public class Student {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public Student(){

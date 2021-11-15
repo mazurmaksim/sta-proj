@@ -1,6 +1,8 @@
 package net.students.accounting.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name="st_groups")
@@ -9,9 +11,9 @@ public class Groups {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
-    private Long id;
+    private Integer id;
 
-    @Column(name = "group_name", length = 10)
+    @Column(name = "group_name")
     private String groupName;
 
     public String getGroupName() {
@@ -22,11 +24,11 @@ public class Groups {
         this.groupName = groupName;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 

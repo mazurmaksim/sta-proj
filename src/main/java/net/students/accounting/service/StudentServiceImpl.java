@@ -25,12 +25,12 @@ public class StudentServiceImpl implements StudentService{
 
     @Override
     public void saveStudent(Student student) {
-        studentRepository.save(student);
+          studentRepository.save(student);
     }
 
     @Override
     public void deleteStudent(int id) {
-
+        studentRepository.deleteById(id);
     }
 
     @Override

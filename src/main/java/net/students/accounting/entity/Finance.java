@@ -11,7 +11,7 @@ public class Finance {
     @Column(name="id")
     private Integer id;
 
-    @Column(name="inn", length = 8)
+    @Column(name="inn")
     private String inn;
 
     @Column(name = "grants")
