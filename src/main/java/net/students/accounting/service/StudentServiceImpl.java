@@ -20,7 +20,7 @@ public class StudentServiceImpl implements StudentService{
 
     @Override
     public Student getStudent(int id) {
-        return null;
+        return studentRepository.getStudentById(id);
     }
 
     @Override
