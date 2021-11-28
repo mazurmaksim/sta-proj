@@ -1,6 +1,11 @@
 package net.students.accounting.entity;
 
+import com.google.i18n.phonenumbers.NumberParseException;
+import com.google.i18n.phonenumbers.PhoneNumberUtil;
+import com.google.i18n.phonenumbers.Phonenumber;
+
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -9,7 +14,7 @@ public class Student {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id")
+    @Column(name = "id")
     private Integer id;
 
 //    @Column(name = "status", nullable = false)
@@ -35,10 +40,10 @@ public class Student {
     @JoinColumn(name = "finance_id", referencedColumnName = "id")
     private Finance finance;
 
-    @Column(name="user_pic")
+    @Column(name = "user_pic")
     private String userPic;
 
-    @Column(name="phone")
+    @Column(name = "phone")
     private String phone;
 
 
@@ -90,6 +95,21 @@ public class Student {
 //        this.status = status;
 //    }
 
+    @Transient
+    private boolean isValidPhoneNumber(String phone) {
+        PhoneNumberUtil phoneUtil = PhoneNumberUtil.getInstance();
+        Phonenumber.PhoneNumber phoneNumber = new Phonenumber.PhoneNumber();
+
+        for (String regionCode : phoneUtil.getSupportedRegions()) {
+                    try {
+                        phoneNumber = phoneUtil.parse(phone, regionCode);
+                    } catch (NumberParseException e) {
+                        System.err.println("NumberParseException was thrown: " + e.toString());
+                    }
+                }
+        return phoneUtil.isValidNumber(phoneNumber);
+    }
+
     public String getName() {
         return name;
     }
@@ -119,10 +139,12 @@ public class Student {
     }
 
     public void setPhone(String phone) {
-        this.phone = phone;
+        if (isValidPhoneNumber(phone)) {
+            this.phone = phone;
+        }
     }
 
-    public Student(){
+    public Student() {
 
     }
 
