@@ -35,6 +35,13 @@ public class Student {
     @JoinColumn(name = "finance_id", referencedColumnName = "id")
     private Finance finance;
 
+    @Column(name="user_pic")
+    private String userPic;
+
+    @Column(name="phone")
+    private String phone;
+
+
     public Integer getId() {
         return id;
     }
@@ -97,6 +104,22 @@ public class Student {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getUserPic() {
+        return userPic;
+    }
+
+    public void setUserPic(String userPic) {
+        this.userPic = userPic;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public Student(){

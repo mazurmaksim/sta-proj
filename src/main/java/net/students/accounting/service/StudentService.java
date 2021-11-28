@@ -11,4 +11,5 @@ public interface StudentService {
     void saveStudent(Student student);
     void deleteStudent(int id);
     Student getStudentByInn(String inn);
+    void updateStudent(Student student);
 }

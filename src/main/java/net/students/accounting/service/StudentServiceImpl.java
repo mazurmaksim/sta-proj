@@ -37,4 +37,9 @@ public class StudentServiceImpl implements StudentService{
     public Student getStudentByInn(String inn) {
         return null;
     }
+
+    @Override
+    public void updateStudent(Student student) {
+        studentRepository.save(student);
+    }
 }

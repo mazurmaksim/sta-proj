@@ -21,13 +21,19 @@ public class MainController {
 
     @GetMapping("/students")
     public List<Student> getStudent() {
-        LOGGER.info(MessageFormat.format("Getting student from a DB{0}", studentService.getAllStudents()));
+        LOGGER.debug(MessageFormat.format("Getting student from a DB{0}", studentService.getAllStudents()));
         return studentService.getAllStudents();
     }
 
     @PostMapping("/students")
     public Student addNewStudent(@RequestBody Student student) {
         studentService.saveStudent(student);
+        return student;
+    }
+
+    @PutMapping("/students/update")
+    public Student updateStudent(@RequestBody Student student) {
+        studentService.updateStudent(student);
         return student;
     }
 
