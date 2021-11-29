@@ -37,6 +37,18 @@ public class MainController {
         return student;
     }
 
+    @GetMapping("/students/{groupName}")
+    public List<Student> getStudentsByGroupName(@PathVariable String groupName) {
+        List<Student> students = studentService.getStudentByGroupName(groupName);
+        return students;
+    }
+
+    @GetMapping("/students/studentid/{inn}")
+    public Student getStudentByIdentical(@PathVariable(value="inn") String inn) {
+        Student student = studentService.getStudentByInn(inn);
+        return student;
+    }
+
     @DeleteMapping("/students/{id}")
     public String deleteStudent(@PathVariable int id) {
         studentService.deleteStudent(id);

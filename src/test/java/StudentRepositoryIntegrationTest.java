@@ -11,6 +11,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.List;
+
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -27,11 +29,11 @@ public class StudentRepositoryIntegrationTest {
     @Before
     public void setUp() {
         student = createStudent();
+        studentService.saveStudent(student);
     }
 
     @Test
     public void findOneStudent() {
-        studentService.saveStudent(student);
         assertThat(studentService.getStudent(1).getName())
                 .isEqualTo("Maks");
         assertThat(studentService.getStudent(1).getLastName())
@@ -46,6 +48,44 @@ public class StudentRepositoryIntegrationTest {
                 .isEqualTo("localHost");
         assertThat(studentService.getStudent(1).getFinance().getInn())
                 .isEqualTo("1452652541");
+    }
+
+    @Test
+    public void findAllStudents() {
+        List<Student> students = studentService.getAllStudents();
+        assertThat(students.size()).isGreaterThan(0);
+        assertThat(students.get(0).getName()).isEqualTo("Maks");
+    }
+
+    @Test
+    public void updateStudent() {
+        Finance updateFinance = new Finance();
+        Groups groups = new Groups();
+        groups.setGroupName("Б-41");
+
+        student.setName("Valentin");
+        updateFinance.setInn("742589214");
+
+        student.setFinance(updateFinance);
+        student.setStGroup(groups);
+        studentService.updateStudent(student);
+
+        Student studentFromDB = studentService.getStudent(1);
+        assertThat(studentFromDB.getName()).isEqualTo("Valentin");
+        assertThat(studentFromDB.getFinance().getInn()).isEqualTo("742589214");
+        assertThat(studentFromDB.getStGroup().getGroupName()).isEqualTo("Б-41");
+    }
+
+    @Test
+    public void getStudentByInn(){
+        Student studentByInn = studentService.getStudentByInn("1452652541");
+        assertThat(studentByInn.getName()).isEqualTo("Maks");
+    }
+
+    @Test
+    public void getStudentsByGroupName(){
+        List<Student> studentByGroupName = studentService.getStudentByGroupName("Б-46");
+        assertThat(studentByGroupName.contains(student)).isTrue();
     }
 
     private Student createStudent() {
