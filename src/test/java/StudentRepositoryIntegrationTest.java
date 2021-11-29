@@ -7,6 +7,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -51,6 +52,7 @@ public class StudentRepositoryIntegrationTest {
     }
 
     @Test
+    @DirtiesContext
     public void findAllStudents() {
         List<Student> students = studentService.getAllStudents();
         assertThat(students.size()).isGreaterThan(0);
@@ -58,6 +60,7 @@ public class StudentRepositoryIntegrationTest {
     }
 
     @Test
+    @DirtiesContext
     public void updateStudent() {
         Finance updateFinance = new Finance();
         Groups groups = new Groups();
