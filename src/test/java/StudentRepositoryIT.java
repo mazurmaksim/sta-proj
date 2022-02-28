@@ -20,7 +20,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 @TestPropertySource(locations = "classpath:student-integrationtest.properties")
 @ContextConfiguration("classpath:spring/test-context.xml")
 @DataJpaTest
-public class StudentRepositoryIntegrationTest {
+public class StudentRepositoryIT {
 
     @Autowired
     StudentService studentService;
