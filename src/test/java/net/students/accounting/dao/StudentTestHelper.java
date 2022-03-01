@@ -26,7 +26,7 @@ public class StudentTestHelper {
         student.setName("Maks");
         student.setLastName("Mazur");
         student.setMiddleName("Aleksandrovich");
-        student.setPhone("+380965156858");
+        student.setPhone("+380956563258");
         student.setUserPic("localHost");
 
         student.setFinance(finance);
