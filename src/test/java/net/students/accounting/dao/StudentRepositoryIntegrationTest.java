@@ -1,3 +1,5 @@
+package net.students.accounting.dao;
+
 import net.students.accounting.entity.Finance;
 import net.students.accounting.entity.Groups;
 import net.students.accounting.entity.Student;
@@ -26,10 +28,11 @@ public class StudentRepositoryIntegrationTest {
     StudentService studentService;
 
     Student student;
+    public StudentTestHelper helper = new StudentTestHelper();
 
     @Before
     public void setUp() {
-        student = createStudent();
+        student = helper.createStudent();
         studentService.saveStudent(student);
     }
 
@@ -91,23 +94,5 @@ public class StudentRepositoryIntegrationTest {
         assertThat(studentByGroupName.contains(student)).isTrue();
     }
 
-    private Student createStudent() {
-        Finance finance = new Finance();
-        Groups groups = new Groups();
-        groups.setGroupName("Б-46");
 
-        finance.setGrants(500.3);
-        finance.setInn("1452652541");
-
-        Student student = new Student();
-        student.setStGroup(groups);
-        student.setName("Maks");
-        student.setLastName("Mazur");
-        student.setMiddleName("Aleksandrovich");
-        student.setPhone("+380965156858");
-        student.setUserPic("localHost");
-
-        student.setFinance(finance);
-        return student;
-    }
 }

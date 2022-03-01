@@ -9,4 +9,6 @@
 <bean id="studentService" class="net.students.accounting.service.StudentServiceImpl">
 </bean>
     <context:component-scan base-package="net.students.accounting"/>
+    <context:component-scan base-package="net.students.accounting.service"/>
+    <context:component-scan base-package="net.students.accounting.dao"/>
 </beans>
