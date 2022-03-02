@@ -104,7 +104,7 @@ public class Student {
                     try {
                         phoneNumber = phoneUtil.parse(phone, regionCode);
                     } catch (NumberParseException e) {
-                        System.err.println("NumberParseException was thrown: " + e.toString());
+                        System.err.println("NumberParseException was thrown: " + e);
                     }
                 }
         return phoneUtil.isValidNumber(phoneNumber);

@@ -47,7 +47,7 @@ public class StudentRepositoryIntegrationTest {
         assertThat(studentService.getStudent(1).getStGroup().getGroupName())
                 .isEqualTo("Б-46");
         assertThat(studentService.getStudent(1).getPhone())
-                .isEqualTo("+380965156858");
+                .isEqualTo("+380956563258");
         assertThat(studentService.getStudent(1).getUserPic())
                 .isEqualTo("localHost");
         assertThat(studentService.getStudent(1).getFinance().getInn())
