@@ -13,17 +13,22 @@ public class StudentDataMapper {
         this.student = student;
     }
 
-    public Map<String, Object> studentMapper() {
-        Map<String, Object> dataMap = new HashMap<>();
+    public Map<String, Object[]> studentMapper() {
+        Map<String, Object[]> dataMap = new HashMap<>();
 
-        dataMap.put("Name", student.getName());
-        dataMap.put("Last Name", student.getLastName());
-        dataMap.put("Middle Name", student.getMiddleName());
-        dataMap.put("Group", student.getStGroup().getGroupName());
-        dataMap.put("Inn", student.getFinance().getInn());
-        dataMap.put("Grant", student.getFinance().getGrants());
-        dataMap.put("Phone Number", student.getPhone());
-
+        dataMap.put("1", new Object[]{
+                "Name", "Last Name",
+                "Middle Name", "Group",
+                "Inn", "Grant",
+                "Phone Number"});
+        dataMap.put("2", new Object[]{
+                student.getName(),
+                student.getLastName(),
+                student.getMiddleName(),
+                student.getStGroup().getGroupName(),
+                student.getFinance().getInn(),
+                student.getFinance().getGrants(),
+                student.getPhone()});
         return dataMap;
     }
 }
