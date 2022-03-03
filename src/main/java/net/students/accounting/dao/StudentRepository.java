@@ -10,7 +10,7 @@ import java.util.List;
 
 @Repository(value = "studentRepository")
 public interface StudentRepository extends JpaRepository<Student, Integer> {
-    public Student getStudentByName(String name);
+    Student getStudentByName(String name);
     Student getStudentById(int id);
 
     @Query(value = "SELECT * from students as student" +
