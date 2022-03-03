@@ -14,9 +14,6 @@ public class Finance {
     @Column(name="inn")
     private String inn;
 
-    @Column(name = "grants")
-    private Double grants;
-
     public Finance(){}
 
     public void setId(Integer id) {
@@ -34,13 +31,4 @@ public class Finance {
     public void setInn(String iin) {
         this.inn = iin;
     }
-
-    public Double getGrants() {
-        return grants;
-    }
-
-    public void setGrants(Double grant) {
-        this.grants = grant;
-    }
-
 }

@@ -18,7 +18,6 @@ public class StudentTestHelper {
         Groups groups = new Groups();
         groups.setGroupName("B-46");
 
-        finance.setGrants(500.3);
         finance.setInn("1452652541");
 
         Student student = new Student();

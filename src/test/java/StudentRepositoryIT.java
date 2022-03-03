@@ -42,7 +42,7 @@ public class StudentRepositoryIT {
         assertThat(studentService.getStudent(1).getMiddleName())
                 .isEqualTo("Aleksandrovich");
         assertThat(studentService.getStudent(1).getStGroup().getGroupName())
-                .isEqualTo("Б-46");
+                .isEqualTo("B-46");
         assertThat(studentService.getStudent(1).getPhone())
                 .isEqualTo("+380965156858");
         assertThat(studentService.getStudent(1).getUserPic())
@@ -64,7 +64,7 @@ public class StudentRepositoryIT {
     public void updateStudent() {
         Finance updateFinance = new Finance();
         Groups groups = new Groups();
-        groups.setGroupName("Б-41");
+        groups.setGroupName("B-46");
 
         student.setName("Valentin");
         updateFinance.setInn("742589214");
@@ -76,7 +76,7 @@ public class StudentRepositoryIT {
         Student studentFromDB = studentService.getStudent(1);
         assertThat(studentFromDB.getName()).isEqualTo("Valentin");
         assertThat(studentFromDB.getFinance().getInn()).isEqualTo("742589214");
-        assertThat(studentFromDB.getStGroup().getGroupName()).isEqualTo("Б-41");
+        assertThat(studentFromDB.getStGroup().getGroupName()).isEqualTo("B-46");
     }
 
     @Test
@@ -87,16 +87,15 @@ public class StudentRepositoryIT {
 
     @Test
     public void getStudentsByGroupName(){
-        List<Student> studentByGroupName = studentService.getStudentByGroupName("Б-46");
+        List<Student> studentByGroupName = studentService.getStudentByGroupName("B-46");
         assertThat(studentByGroupName.contains(student)).isTrue();
     }
 
     private Student createStudent() {
         Finance finance = new Finance();
         Groups groups = new Groups();
-        groups.setGroupName("Б-46");
+        groups.setGroupName("B-46");
 
-        finance.setGrants(500.3);
         finance.setInn("1452652541");
 
         Student student = new Student();

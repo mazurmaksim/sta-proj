@@ -45,7 +45,7 @@ public class StudentRepositoryIntegrationTest {
         assertThat(studentService.getStudent(1).getMiddleName())
                 .isEqualTo("Aleksandrovich");
         assertThat(studentService.getStudent(1).getStGroup().getGroupName())
-                .isEqualTo("Б-46");
+                .isEqualTo("B-46");
         assertThat(studentService.getStudent(1).getPhone())
                 .isEqualTo("+380956563258");
         assertThat(studentService.getStudent(1).getUserPic())
@@ -90,7 +90,7 @@ public class StudentRepositoryIntegrationTest {
 
     @Test
     public void getStudentsByGroupName(){
-        List<Student> studentByGroupName = studentService.getStudentByGroupName("Б-46");
+        List<Student> studentByGroupName = studentService.getStudentByGroupName("B-46");
         assertThat(studentByGroupName.contains(student)).isTrue();
     }
 
