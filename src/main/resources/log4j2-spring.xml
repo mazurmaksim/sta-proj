@@ -29,10 +29,8 @@
             <AppenderRef ref="Console" />
             <AppenderRef ref="RollingFile" />
         </Root>
-
-        <!-- LOG "com.baeldung*" at TRACE level -->
-        <Logger name="net.students.accounting" level="trace"></Logger>
-        <Logger name="net.students.accounting.controller" level="info"></Logger>
+        <Logger name="net.students.accounting" level="trace"/>
+        <Logger name="net.students.accounting.controller" level="info"/>
     </Loggers>
 
 </Configuration>
