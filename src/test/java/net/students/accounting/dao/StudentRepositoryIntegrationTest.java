@@ -3,6 +3,7 @@ package net.students.accounting.dao;
 import net.students.accounting.entity.Finance;
 import net.students.accounting.entity.Groups;
 import net.students.accounting.entity.Student;
+import net.students.accounting.entity.StudentGrants;
 import net.students.accounting.service.StudentService;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,15 +14,18 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@TestPropertySource(locations = "classpath:student-integrationtest.properties")
+@TestPropertySource(locations = "classpath:application-test.properties")
 @ContextConfiguration("classpath:spring/test-context.xml")
-@DataJpaTest
+//@DataJpaTest
+@Transactional()
 public class StudentRepositoryIntegrationTest {
 
     @Autowired
@@ -55,7 +59,7 @@ public class StudentRepositoryIntegrationTest {
     }
 
     @Test
-    @DirtiesContext
+//    @DirtiesContext
     public void findAllStudents() {
         List<Student> students = studentService.getAllStudents();
         assertThat(students.size()).isGreaterThan(0);
@@ -67,12 +71,16 @@ public class StudentRepositoryIntegrationTest {
     public void updateStudent() {
         Finance updateFinance = new Finance();
         Groups groups = new Groups();
+        StudentGrants grants = new StudentGrants();
         groups.setGroupName("Б-41");
 
         student.setName("Valentin");
         updateFinance.setInn("742589214");
-
+        grants.setGrant(800.87);
+        List<StudentGrants> grantsList = new ArrayList<>();
+        grantsList.add(grants);
         student.setFinance(updateFinance);
+        student.setGrantsList(grantsList);
         student.setStGroup(groups);
         studentService.updateStudent(student);
 

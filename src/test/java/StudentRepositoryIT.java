@@ -17,7 +17,7 @@ import java.util.List;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@TestPropertySource(locations = "classpath:student-integrationtest.properties")
+@TestPropertySource(locations = "classpath:application-test.properties")
 @ContextConfiguration("classpath:spring/test-context.xml")
 @DataJpaTest
 public class StudentRepositoryIT {

@@ -18,7 +18,7 @@ public interface StudentRepository extends JpaRepository<Student, Integer> {
             "    as groups_st where groups_st.group_name = ?1 and student.group_id = groups_st.id" , nativeQuery= true)
     List<Student> getStudentByGroupName(@Param("groupName") String groupName);
 
-    @Query(value = "SELECT * from Students as student" +
+    @Query(value = "SELECT * from students as student" +
             "    inner join Finance_info" +
             "        as finance where finance.inn = ?1 and student.finance_id = finance.id" , nativeQuery= true)
     Student getStudentByIdentical(@Param("inn") String inn);}

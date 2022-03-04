@@ -10,7 +10,7 @@ import org.springframework.test.context.ContextConfiguration
 import org.springframework.test.context.TestPropertySource
 import spock.lang.Specification
 
-@TestPropertySource(locations = "classpath:student-integrationtest.properties")
+@TestPropertySource(locations = "classpath:application-test.properties")
 @ContextConfiguration("classpath:spring/test-context.xml")
 class XLSProcessTest extends Specification {
 

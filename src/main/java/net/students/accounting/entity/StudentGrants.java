@@ -1,6 +1,10 @@
 package net.students.accounting.entity;
 
+import net.students.accounting.logic.GrantApply;
+import net.students.accounting.logic.GrantApplyDecide;
+
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -11,9 +15,6 @@ public class StudentGrants {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
-
-    @Column(name = "grant")
-    private Double grant;
 
     @Column(name = "get_date")
     private Date date;
@@ -173,12 +174,58 @@ public class StudentGrants {
         this.id = id;
     }
 
-    public Double getGrant() {
-        return grant;
-    }
-
+    @Transient
     public void setGrant(Double grant) {
-        this.grant = grant;
+        GrantApply grantApply = new GrantApplyDecide();
+        LocalDate today = LocalDate.now();
+
+        if (grantApply.apply(today, 1)) {
+                january = grant;
+        }
+
+        if (grantApply.apply(today, 2)) {
+                february = grant;
+        }
+
+        if (grantApply.apply(today, 3)) {
+                march = grant;
+        }
+
+        if (grantApply.apply(today, 4)) {
+                april = grant;
+        }
+
+        if (grantApply.apply(today, 5)) {
+                may = grant;
+        }
+
+        if (grantApply.apply(today, 6)) {
+                june = grant;
+        }
+
+        if (grantApply.apply(today, 7)) {
+                july = grant;
+        }
+
+        if (grantApply.apply(today, 8)) {
+                august = grant;
+        }
+
+        if (grantApply.apply(today, 9)) {
+                september = grant;
+       }
+
+        if (grantApply.apply(today, 10)) {
+                october = grant;
+        }
+
+        if (grantApply.apply(today, 11)) {
+                november = grant;
+        }
+
+        if (grantApply.apply(today, 12)) {
+                december = grant;
+        }
     }
 
     public Date getDate() {
