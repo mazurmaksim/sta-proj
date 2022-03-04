@@ -46,7 +46,7 @@ public class Student {
     @Column(name = "phone")
     private String phone;
 
-    @OneToMany(mappedBy = "student")
+    @OneToMany(mappedBy = "student", fetch = FetchType.EAGER)
     List<StudentGrants> grantsList;
 
     public List<StudentGrants> getGrantsList() {

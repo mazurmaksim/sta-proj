@@ -29,9 +29,13 @@ public class StudentTestHelper {
         student.setPhone("+380956563258");
         student.setUserPic("localHost");
         student.setFinance(finance);
-        StudentGrants grants = new StudentGrants();
-        grants.setStudent(student);
-        grants.setGrant(900.85);
         return student;
+    }
+
+    public StudentGrants setGrant() {
+        StudentGrants grants = new StudentGrants();
+        grants.setStudent(createStudent());
+        grants.setGrant(965.325);
+        return grants;
     }
 }

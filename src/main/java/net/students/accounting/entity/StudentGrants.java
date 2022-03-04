@@ -20,7 +20,7 @@ public class StudentGrants {
     private Date date;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "student_id", nullable = false, referencedColumnName = "id")
+    @JoinColumn(name = "student_id", referencedColumnName = "id")
     private Student student;
 
     @Column(name = "january")
@@ -180,51 +180,51 @@ public class StudentGrants {
         LocalDate today = LocalDate.now();
 
         if (grantApply.apply(today, 1)) {
-                january = grant;
+                setJanuary(grant);
         }
 
         if (grantApply.apply(today, 2)) {
-                february = grant;
+                setFebruary(grant);
         }
 
         if (grantApply.apply(today, 3)) {
-                march = grant;
+                setMarch(grant);
         }
 
         if (grantApply.apply(today, 4)) {
-                april = grant;
+                setApril(grant);
         }
 
         if (grantApply.apply(today, 5)) {
-                may = grant;
+                setMay(grant);
         }
 
         if (grantApply.apply(today, 6)) {
-                june = grant;
+                setJune(grant);
         }
 
         if (grantApply.apply(today, 7)) {
-                july = grant;
+                setJuly(grant);
         }
 
         if (grantApply.apply(today, 8)) {
-                august = grant;
+                setAugust(grant);
         }
 
         if (grantApply.apply(today, 9)) {
-                september = grant;
+                setSeptember(grant);
        }
 
         if (grantApply.apply(today, 10)) {
-                october = grant;
+                setOctober(grant);
         }
 
         if (grantApply.apply(today, 11)) {
-                november = grant;
+                setNovember(grant);
         }
 
         if (grantApply.apply(today, 12)) {
-                december = grant;
+                setDecember(grant);
         }
     }
 

@@ -52,4 +52,9 @@ public class StudentServiceImpl implements StudentService{
     public List<Student> getStudentByGroupName(String groupName) {
         return studentRepository.getStudentByGroupName(groupName);
     }
+
+    @Override
+    public Student getStudentByName(String name) {
+        return studentRepository.getStudentByName(name);
+    }
 }

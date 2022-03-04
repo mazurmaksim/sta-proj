@@ -15,4 +15,5 @@ public interface StudentService {
     Student getStudentByInn(String inn);
     void updateStudent(Student student);
     List<Student> getStudentByGroupName(String groupName);
+    Student getStudentByName(String name);
 }
