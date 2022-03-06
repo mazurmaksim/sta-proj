@@ -35,7 +35,7 @@ public class StudentTestHelper {
     public StudentGrants setGrant() {
         StudentGrants grants = new StudentGrants();
         grants.setStudent(createStudent());
-        grants.setGrant(965.325);
+        grants.setGrants(965.325);
         return grants;
     }
 }

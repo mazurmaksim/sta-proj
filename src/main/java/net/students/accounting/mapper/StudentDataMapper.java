@@ -33,18 +33,7 @@ public class StudentDataMapper {
                 student.getMiddleName(),
                 student.getStGroup().getGroupName(),
                 student.getPhone(),
-                student.getFinance().getInn(),
-                grants.getJanuary(),
-                grants.getFebruary(),
-                grants.getMarch(),
-                grants.getApril(),
-                grants.getMay(),
-                grants.getJune(),
-                grants.getJuly(),
-                grants.getAugust(),
-                grants.getOctober(),
-                grants.getNovember(),
-                grants.getDecember()
+                student.getFinance().getInn()
                 });
         return dataMap;
     }

@@ -92,9 +92,8 @@ public class StudentRepositoryIntegrationTest {
         grants = new StudentGrants();
         StudentGrants grants = new StudentGrants();
         grants.setStudent(student);
-        grants.setGrant(965.325);
+        grants.setGrants(965.325);
         grantsService.saveGrant(grants);
-
     }
 
     @Test
@@ -107,7 +106,7 @@ public class StudentRepositoryIntegrationTest {
 
         student.setName("Valentin");
         updateFinance.setInn("742589214");
-        grants.setGrant(800.87);
+        grants.setGrants(800.87);
         List<StudentGrants> grantsList = new ArrayList<>();
         grantsList.add(grants);
         student.setFinance(updateFinance);
