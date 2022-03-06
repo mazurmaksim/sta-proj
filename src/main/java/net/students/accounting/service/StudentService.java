@@ -1,9 +1,6 @@
 package net.students.accounting.service;
 
 import net.students.accounting.entity.Student;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -15,4 +12,5 @@ public interface StudentService {
     Student getStudentByInn(String inn);
     void updateStudent(Student student);
     List<Student> getStudentByGroupName(String groupName);
+    Student getStudentByName(String name);
 }

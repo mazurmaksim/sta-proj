@@ -46,6 +46,16 @@ public class Student {
     @Column(name = "phone")
     private String phone;
 
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
+    List<StudentGrants> grantsList;
+
+    public List<StudentGrants> getGrantsList() {
+        return grantsList;
+    }
+
+    public void setGrantsList(List<StudentGrants> grantsList) {
+        this.grantsList = grantsList;
+    }
 
     public Integer getId() {
         return id;
