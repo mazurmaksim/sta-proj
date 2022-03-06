@@ -21,6 +21,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.Assert.assertEquals;
@@ -46,6 +47,11 @@ public class StudentRepositoryIntegrationTest {
     public void setUp() {
         student = helper.createStudent();
         studentService.saveStudent(student);
+        StudentGrants grants = new StudentGrants();
+        grants.setGrants(965.325);
+        grants.setMonths(LocalDate.now());
+        grants.setStudent(student);
+        grantsService.saveGrant(grants);
     }
 
     @Test
@@ -68,7 +74,6 @@ public class StudentRepositoryIntegrationTest {
     }
 
     @Test
-    @DirtiesContext
     public void findAllStudents() {
         List<Student> students = studentService.getAllStudents();
         assertThat(students.size()).isGreaterThan(0);
@@ -76,6 +81,7 @@ public class StudentRepositoryIntegrationTest {
     }
 
     @Test
+    @Transactional
     public void getStudentByInn(){
         Student studentByInn = studentService.getStudentByInn("1452652541");
         assertThat(studentByInn.getName()).isEqualTo("Maks");
@@ -90,14 +96,14 @@ public class StudentRepositoryIntegrationTest {
     @Test
     public void grant_should_be_saved_to_current_months() {
         grants = new StudentGrants();
-        StudentGrants grants = new StudentGrants();
-        grants.setStudent(student);
-        grants.setGrants(965.325);
-        grantsService.saveGrant(grants);
+        LocalDate now = LocalDate.now();
+        StudentGrants stGrant = grantsService.getStudentGrantsByStudentId(student.getId());
+        assertThat(stGrant.getGrants()).isEqualTo(965.325d);
+        assertThat(stGrant.getMonths()).isEqualTo(now);
+        assertThat(stGrant.getStudent().getId()).isEqualTo(student.getId());
     }
 
     @Test
-    @DirtiesContext
     public void updateStudent() {
         Finance updateFinance = new Finance();
         Groups groups = new Groups();
@@ -112,6 +118,12 @@ public class StudentRepositoryIntegrationTest {
         student.setFinance(updateFinance);
         student.setGrantsList(grantsList);
         student.setStGroup(groups);
+
+        grants.setGrants(965.325);
+        grants.setMonths(LocalDate.now());
+        grants.setStudent(student);
+        grantsService.saveGrant(grants);
+
         studentService.updateStudent(student);
 
         Student studentFromDB = studentService.getStudentByName("Valentin");

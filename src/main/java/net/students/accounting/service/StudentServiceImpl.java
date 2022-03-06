@@ -2,13 +2,8 @@ package net.students.accounting.service;
 
 import net.students.accounting.dao.StudentRepository;
 import net.students.accounting.entity.Student;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 

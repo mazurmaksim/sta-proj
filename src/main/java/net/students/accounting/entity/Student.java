@@ -46,7 +46,7 @@ public class Student {
     @Column(name = "phone")
     private String phone;
 
-    @OneToMany(mappedBy = "student", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
     List<StudentGrants> grantsList;
 
     public List<StudentGrants> getGrantsList() {

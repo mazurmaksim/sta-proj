@@ -7,8 +7,6 @@ import net.students.accounting.entity.StudentGrants;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 
-@TestPropertySource(locations = "classpath:application-test.properties")
-@ContextConfiguration("classpath:spring/test-context.xml")
 public class StudentTestHelper {
 
     public StudentTestHelper() {
@@ -30,12 +28,5 @@ public class StudentTestHelper {
         student.setUserPic("localHost");
         student.setFinance(finance);
         return student;
-    }
-
-    public StudentGrants setGrant() {
-        StudentGrants grants = new StudentGrants();
-        grants.setStudent(createStudent());
-        grants.setGrants(965.325);
-        return grants;
     }
 }
