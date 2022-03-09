@@ -14,16 +14,10 @@ class XLSProcessStudentListTest extends Specification {
     @Rule
     public TemporaryFolder folder= new TemporaryFolder();
     StudentTestHelper helper = new StudentTestHelper()
-    Student student
-    List<Student> stList;
+    List<Student> stList = new ArrayList<>()
 
     def setup() {
-        student = helper.createStudent()
-        stList = new ArrayList<>()
-        stList.add(student)
-        stList.add(student)
-        stList.add(student)
-        stList.add(student)
+        stList = helper.createStudentList()
     }
 
     def "Have to get a byteArray[] with XLS data from one student data" () {
@@ -47,19 +41,5 @@ class XLSProcessStudentListTest extends Specification {
         xlSProcess.saveXls("src/test/resources/xls/student_list.xls")
         then: "When write file should not be exceptions"
         noExceptionThrown()
-    }
-
-    def "Have to write XLS file with one student data to destination" () {
-        given : "selected student from UI"
-        StudentDataMapper mapper = new StudentDataMapper(student)
-        Map<String, Object[]> map = mapper.studentMapper()
-        XlSProcess xlSProcess = new XlSProcess()
-        xlSProcess.process(map)
-        when:
-        xlSProcess.saveXls(folder.newFile("testFile.xls").toString())
-        then: "byte arrays must be identical with file content"
-        byte[] resultFile = FileUtils.readFileToByteArray(folder.getRoot().listFiles()[0])
-        byte[] fileContent = FileUtils.readFileToByteArray(new File("src/test/resources/xls/file.xls"))
-        resultFile == fileContent
     }
 }

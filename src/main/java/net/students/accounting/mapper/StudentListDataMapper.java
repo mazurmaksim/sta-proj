@@ -4,9 +4,10 @@ import net.students.accounting.entity.Student;
 import net.students.accounting.entity.StudentGrants;
 
 import java.lang.reflect.Array;
-import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Stream;
 
 public class StudentListDataMapper {
@@ -20,8 +21,10 @@ public class StudentListDataMapper {
     public Map<String, Object[]> studentMapper() {
         Map<String, Object[]> dataMap = new HashMap<>();
         studentList.forEach(student -> dataMap.put("1", titles(student.getGrantsList())));
-        studentList.forEach(student -> dataMap.put("2",
-                data(student.getGrantsList())));
+        int count = 2;
+        for (Student lst : studentList) {
+            dataMap.put(String.valueOf(count++), data(lst));
+        }
         return dataMap;
     }
 
@@ -30,18 +33,17 @@ public class StudentListDataMapper {
                 .toArray(size -> (T[]) Array.newInstance(array1.getClass().getComponentType(), size));
     }
 
-    public Object[] data(List<StudentGrants> grants) {
-        List<Object[]> fieldsArr = studentList.stream().map(student -> new Object[] {
+    public Object[] data(Student student) {
+        Object[] fields = new Object[]{
                 student.getName(),
                 student.getLastName(),
                 student.getMiddleName(),
                 student.getStGroup().getGroupName(),
                 student.getPhone(),
                 student.getFinance().getInn()
-        }).collect(Collectors.toList());
-        List<Object> fields = append(fieldsArr);
-        Object[] values = grants.stream().map(StudentGrants::getGrants).toArray(Object[]::new);
-        return concatWithStream(fields.stream().toArray(Object[]::new), values);
+        };
+        Object[] values = student.getGrantsList().stream().map(StudentGrants::getGrants).toArray(Object[]::new);
+        return concatWithStream(fields, values);
     }
 
     public Object[] titles(List<StudentGrants> grants) {
@@ -52,18 +54,5 @@ public class StudentListDataMapper {
         };
         Object[] titleValues = grants.stream().map(months -> months.getMonths().getMonth().toString()).toArray(Object[]::new);
         return concatWithStream(title, titleValues);
-    }
-
-    public static<T> List<T> append (List<T[]> input) {
-        List<T> res = new ArrayList<T>();
-        for(T[] subarr : input) {
-            if(subarr != null) {
-                int n = subarr.length;
-                for(int i = 0; i < n; i++) {
-                    res.add(subarr[i]);
-                }
-            }
-        }
-        return res;
     }
 }
