@@ -16,9 +16,13 @@ class StudentMapperTest extends Specification {
         result.get("2")[1].toString() == "Mazur"
         result.get("2")[2].toString() == "Aleksandrovich"
         result.get("2")[3].toString() == "B-46"
-        result.get("2")[4].toString() == "1452652541"
-        result.get("2")[5] == 500.3
-        result.get("2")[6].toString() == "+380956563258"
+        result.get("2")[4].toString() == "+380956563258"
+        result.get("2")[5].toString() == "1452652541"
+        result.get("2")[6] == 895.7d
+        result.get("2")[7] == 918.7d
+        result.get("2")[8] == 1000.7d
+        result.get("2")[9] == 1010.7d
+        result.get("2")[10] == 1010.7d
+        result.get("2")[11] == 900.7d
     }
-    
 }
