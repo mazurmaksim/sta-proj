@@ -2,6 +2,7 @@ package net.students.accounting.service;
 
 import net.students.accounting.dao.StudentRepository;
 import net.students.accounting.entity.Student;
+import net.students.accounting.exception.student.StudentNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +21,8 @@ public class StudentServiceImpl implements StudentService{
 
     @Override
     public Student getStudent(int id) {
-        return studentRepository.getStudentById(id);
+        return studentRepository.getStudentById(id)
+                .orElseThrow(() -> new StudentNotFoundException("Can't find student with id" + id));
     }
 
     @Override
@@ -35,7 +37,8 @@ public class StudentServiceImpl implements StudentService{
 
     @Override
     public Student getStudentByInn(String inn) {
-        return studentRepository.getStudentByIdentical(inn);
+        return studentRepository.getStudentByIdentical(inn)
+                .orElseThrow(() -> new StudentNotFoundException("Can't find student with INN" + inn));
     }
 
     @Override
@@ -45,11 +48,13 @@ public class StudentServiceImpl implements StudentService{
 
     @Override
     public List<Student> getStudentByGroupName(String groupName) {
-        return studentRepository.getStudentByGroupName(groupName);
+        List<Student> studentByGroupName = studentRepository.getStudentByGroupName(groupName);
+        return studentByGroupName;
     }
 
     @Override
     public Student getStudentByName(String name) {
-        return studentRepository.getStudentByName(name);
+        return studentRepository.getStudentByName(name)
+                .orElseThrow(() -> new StudentNotFoundException("Not found student with name" + name));
     }
 }

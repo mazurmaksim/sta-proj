@@ -7,11 +7,12 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository(value = "studentRepository")
 public interface StudentRepository extends JpaRepository<Student, Integer> {
-    Student getStudentByName(String name);
-    Student getStudentById(int id);
+    Optional<Student> getStudentByName(String name);
+    Optional<Student> getStudentById(int id);
 
     @Query(value = "SELECT * from students as student" +
             "                  inner join st_groups" +
@@ -21,4 +22,4 @@ public interface StudentRepository extends JpaRepository<Student, Integer> {
     @Query(value = "SELECT * from students as student" +
             "    inner join finance_info" +
             "        as finance where finance.inn = ?1 and student.finance_id = finance.id" , nativeQuery= true)
-    Student getStudentByIdentical(@Param("inn") String inn);}
+    Optional<Student> getStudentByIdentical(@Param("inn") String inn);}

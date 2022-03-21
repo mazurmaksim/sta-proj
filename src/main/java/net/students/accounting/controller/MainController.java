@@ -1,10 +1,8 @@
 package net.students.accounting.controller;
 
-import net.students.accounting.entity.Finance;
-import net.students.accounting.entity.Groups;
 import net.students.accounting.entity.Student;
-import net.students.accounting.exception.GroupNotFoundException;
-import net.students.accounting.exception.UserNotFoundException;
+import net.students.accounting.exception.group.GroupNotFoundException;
+import net.students.accounting.exception.student.StudentNotFoundException;
 import net.students.accounting.service.StudentService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -13,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.text.MessageFormat;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
@@ -26,7 +23,7 @@ public class MainController {
 
     @GetMapping("/students")
     public List<Student> getStudent() {
-        LOGGER.debug(MessageFormat.format("Getting student from a DB{0}", studentService.getAllStudents()));
+        LOGGER.debug(MessageFormat.format("Getting student from a DB {}", studentService.getAllStudents()));
         return studentService.getAllStudents();
     }
 
@@ -54,11 +51,11 @@ public class MainController {
 
 
     @GetMapping("/students/studentid/{inn}")
-    public Student getStudentByIdentical(@PathVariable(value = "inn") String inn) throws UserNotFoundException {
+    public Student getStudentByIdentical(@PathVariable(value = "inn") String inn) throws StudentNotFoundException {
         Student student = studentService.getStudentByInn(inn);
         if (student == null) {
             LOGGER.error("Student with inn {} - not found ", inn);
-            throw new UserNotFoundException("Student not found in database");
+            throw new StudentNotFoundException("Student not found in database");
         }
         return student;
     }
