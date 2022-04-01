@@ -32,7 +32,7 @@ public class Student {
 //    @Column(name = "age")
 //    private Integer age;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "group_id", referencedColumnName = "id")
     private Groups stGroup;
 

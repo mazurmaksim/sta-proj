@@ -9,7 +9,6 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.text.MessageFormat;
 import java.util.List;
 
 @RestController
@@ -23,7 +22,6 @@ public class MainController {
 
     @GetMapping("/students")
     public List<Student> getStudent() {
-        LOGGER.debug(MessageFormat.format("Getting student from a DB {}", studentService.getAllStudents()));
         return studentService.getAllStudents();
     }
 
