@@ -31,6 +31,12 @@ public class MainController {
         return student;
     }
 
+    @PostMapping("/students/all")
+    public List<Student> addAllStudent(@RequestBody List<Student> students) {
+        studentService.saveAllStudents(students);
+        return students;
+    }
+
     @PutMapping("/students/update")
     public Student updateStudent(@RequestBody Student student) {
         studentService.updateStudent(student);

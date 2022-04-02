@@ -1,3 +1,4 @@
+
 create table student_grants
 (
     id         int auto_increment
