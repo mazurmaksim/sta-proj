@@ -32,7 +32,7 @@ public class MainController {
     }
 
     @PostMapping("/students/all")
-    public List<Student> addAllStudent(@RequestBody List<Student> students) {
+    public List<Student> addAllStudents(@RequestBody List<Student> students) {
         studentService.saveAllStudents(students);
         return students;
     }
