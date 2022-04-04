@@ -10,7 +10,7 @@ public class TaxDictionary {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long id;
+    private Integer id;
 
     /**
      *
@@ -40,11 +40,11 @@ public class TaxDictionary {
     @Column(name = "date")
     private LocalDate date;
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
