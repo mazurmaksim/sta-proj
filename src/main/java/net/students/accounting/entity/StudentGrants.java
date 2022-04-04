@@ -1,5 +1,6 @@
 package net.students.accounting.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import net.students.accounting.logic.GrantApply;
 import net.students.accounting.logic.GrantApplyDecide;
 
@@ -17,6 +18,7 @@ public class StudentGrants {
     private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonBackReference
     @JoinColumn(name = "student_id", referencedColumnName = "id")
     private Student student;
 

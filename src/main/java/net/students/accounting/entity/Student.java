@@ -1,5 +1,6 @@
 package net.students.accounting.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber;
@@ -47,6 +48,7 @@ public class Student {
     private String phone;
 
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
+    @JsonManagedReference
     List<StudentGrants> grantsList;
 
     public List<StudentGrants> getGrantsList() {

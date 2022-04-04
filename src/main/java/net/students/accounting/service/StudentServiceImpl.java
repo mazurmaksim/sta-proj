@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service("studentService")
+@Service("studentServiceImpl")
 public class StudentServiceImpl implements StudentService{
 
     @Autowired
@@ -53,8 +53,7 @@ public class StudentServiceImpl implements StudentService{
 
     @Override
     public List<Student> getStudentByGroupName(String groupName) {
-        List<Student> studentByGroupName = studentRepository.getStudentByGroupName(groupName);
-        return studentByGroupName;
+        return studentRepository.getStudentByGroupName(groupName);
     }
 
     @Override

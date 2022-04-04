@@ -6,6 +6,7 @@ import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
+import org.springframework.stereotype.Service;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileOutputStream;
@@ -13,6 +14,7 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.Set;
 
+@Service(value = "xlsxProcessorService")
 public class XlSProcess implements XlSDataProcessor {
     private static final Logger LOGGER = LogManager.getLogger(XlSProcess.class);
 
