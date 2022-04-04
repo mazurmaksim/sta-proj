@@ -53,8 +53,7 @@ public class StudentServiceImpl implements StudentService{
 
     @Override
     public List<Student> getStudentByGroupName(String groupName) {
-        List<Student> studentByGroupName = studentRepository.getStudentByGroupName(groupName);
-        return studentByGroupName;
+        return studentRepository.getStudentByGroupName(groupName);
     }
 
     @Override
