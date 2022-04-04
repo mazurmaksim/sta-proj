@@ -12,12 +12,28 @@ public class TaxDictionary {
     @Column(name = "id")
     private Long id;
 
+    /**
+     *
+     * This variable is in percent
+     *
+     * **/
     @Column(name = "army_tax")
     private Double armyTax;
 
+    /**
+     *
+     * This variable is in percent
+     *
+     * **/
     @Column(name = "income_tax")
     private Double incomeTax;
 
+    /**
+     *
+     * This variable is in currency
+     * for example 2000 HRN
+     *
+     * **/
     @Column(name = "subsistence_level")
     private Double subsistenceLevel;
 
