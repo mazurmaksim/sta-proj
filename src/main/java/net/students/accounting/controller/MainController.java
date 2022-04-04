@@ -4,6 +4,7 @@ import net.students.accounting.entity.Student;
 import net.students.accounting.exception.group.GroupNotFoundException;
 import net.students.accounting.exception.student.StudentNotFoundException;
 import net.students.accounting.mapper.StudentDataMapper;
+import net.students.accounting.mapper.StudentListDataMapper;
 import net.students.accounting.processor.XlSProcess;
 import net.students.accounting.service.StudentService;
 import org.apache.logging.log4j.LogManager;
@@ -78,14 +79,26 @@ public class MainController {
         return "Student with id " + id + " successful deleted";
     }
 
-    @GetMapping(value = "/statistics/xlsx")
-    public HttpEntity<ByteArrayResource> createExcelWithTaskConfigurations(@RequestBody Student student) {
+    @GetMapping(value = "/statistics/single/xlsx")
+    public HttpEntity<ByteArrayResource> createExcelWithSingleStudent(@RequestBody Student student) {
         StudentDataMapper mapper = new StudentDataMapper(student);
         byte[] excelContent = xlSProcess.process(mapper.studentMapper());
 
         HttpHeaders header = new HttpHeaders();
         header.setContentType(new MediaType("application", "force-download"));
         header.set(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=single_student_statistic.xlsx");
+
+        return new HttpEntity<>(new ByteArrayResource(excelContent), header);
+    }
+
+    @GetMapping(value = "/statistics/list/xlsx")
+    public HttpEntity<ByteArrayResource> createExcelWithStudentList(@RequestBody List<Student> studentsList) {
+        StudentListDataMapper mapper = new StudentListDataMapper(studentsList);
+        byte[] excelContent = xlSProcess.process(mapper.studentMapper());
+
+        HttpHeaders header = new HttpHeaders();
+        header.setContentType(new MediaType("application", "force-download"));
+        header.set(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=list_student_statistic.xlsx");
 
         return new HttpEntity<>(new ByteArrayResource(excelContent), header);
     }
