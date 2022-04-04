@@ -3,6 +3,7 @@ package net.students.accounting.controller;
 import net.students.accounting.entity.Student;
 import net.students.accounting.exception.group.GroupNotFoundException;
 import net.students.accounting.exception.student.StudentNotFoundException;
+import net.students.accounting.mapper.AbstractDataMapper;
 import net.students.accounting.mapper.StudentDataMapper;
 import net.students.accounting.mapper.StudentListDataMapper;
 import net.students.accounting.processor.XlSProcess;
@@ -81,7 +82,7 @@ public class MainController {
 
     @GetMapping(value = "/statistics/single/xlsx")
     public HttpEntity<ByteArrayResource> createExcelWithSingleStudent(@RequestBody Student student) {
-        StudentDataMapper mapper = new StudentDataMapper(student);
+        AbstractDataMapper mapper = new StudentDataMapper(student);
         byte[] excelContent = xlSProcess.process(mapper.studentMapper());
 
         HttpHeaders header = new HttpHeaders();
@@ -93,7 +94,7 @@ public class MainController {
 
     @GetMapping(value = "/statistics/list/xlsx")
     public HttpEntity<ByteArrayResource> createExcelWithStudentList(@RequestBody List<Student> studentsList) {
-        StudentListDataMapper mapper = new StudentListDataMapper(studentsList);
+        AbstractDataMapper mapper = new StudentListDataMapper(studentsList);
         byte[] excelContent = xlSProcess.process(mapper.studentMapper());
 
         HttpHeaders header = new HttpHeaders();
