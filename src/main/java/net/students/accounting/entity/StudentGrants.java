@@ -1,12 +1,9 @@
 package net.students.accounting.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import net.students.accounting.logic.GrantApply;
-import net.students.accounting.logic.GrantApplyDecide;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Date;
 
 @Entity
 @Table(name = "student_grants")

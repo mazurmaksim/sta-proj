@@ -8,7 +8,10 @@
         http://www.springframework.org/schema/context/spring-context.xsd">
 <bean id="studentService" class="net.students.accounting.service.StudentServiceImpl">
 </bean>
+    <bean id="systemPreferenceServiceImpl" class="net.students.accounting.service.SystemPreferenceServiceImpl">
+    </bean>
     <context:component-scan base-package="net.students.accounting"/>
     <context:component-scan base-package="net.students.accounting.service"/>
     <context:component-scan base-package="net.students.accounting.dao"/>
+    <context:component-scan base-package="net.students.accounting.system.*"/>
 </beans>
