@@ -1,8 +1,15 @@
 package net.students.accounting.entity;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
 @Table(name="finance_info")
 public class Finance {
 
@@ -13,22 +20,4 @@ public class Finance {
 
     @Column(name="inn")
     private String inn;
-
-    public Finance(){}
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public String getInn() {
-        return inn;
-    }
-
-    public void setInn(String iin) {
-        this.inn = iin;
-    }
 }

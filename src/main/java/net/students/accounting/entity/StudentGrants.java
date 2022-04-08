@@ -1,11 +1,17 @@
 package net.students.accounting.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
 @Table(name = "student_grants")
 public class StudentGrants {
 
@@ -24,36 +30,4 @@ public class StudentGrants {
 
     @Column(name = "grants")
     private Double grants;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public LocalDate getMonths() {
-        return months;
-    }
-
-    public void setMonths(LocalDate months) {
-        this.months = months;
-    }
-
-    public Double getGrants() {
-        return grants;
-    }
-
-    public void setGrants(Double grants) {
-        this.grants = grants;
-    }
-
-    public Student getStudent() {
-        return student;
-    }
-
-    public void setStudent(Student student) {
-        this.student = student;
-    }
 }

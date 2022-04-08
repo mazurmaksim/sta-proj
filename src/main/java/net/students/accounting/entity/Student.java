@@ -4,12 +4,18 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
 @Table(name = "students")
 public class Student {
 
@@ -50,114 +56,4 @@ public class Student {
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
     @JsonManagedReference
     List<StudentGrants> grantsList;
-
-    public List<StudentGrants> getGrantsList() {
-        return grantsList;
-    }
-
-    public void setGrantsList(List<StudentGrants> grantsList) {
-        this.grantsList = grantsList;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Finance getFinance() {
-        return finance;
-    }
-
-    public void setFinance(Finance finance) {
-        this.finance = finance;
-    }
-
-    public Groups getStGroup() {
-        return stGroup;
-    }
-
-    public void setStGroup(Groups stGroup) {
-        this.stGroup = stGroup;
-    }
-
-    public String getMiddleName() {
-        return middleName;
-    }
-
-    public void setMiddleName(String middleName) {
-        this.middleName = middleName;
-    }
-
-//    public Integer getAge() {
-//        return age;
-//    }
-//
-//    public void setAge(Integer age) {
-//        this.age = age;
-//    }
-
-//    public String getStatus() {
-//        return status;
-//    }
-//
-//    public void setStatus(String status) {
-//        this.status = status;
-//    }
-
-    @Transient
-    private boolean isValidPhoneNumber(String phone) {
-        PhoneNumberUtil phoneUtil = PhoneNumberUtil.getInstance();
-        Phonenumber.PhoneNumber phoneNumber = new Phonenumber.PhoneNumber();
-
-        for (String regionCode : phoneUtil.getSupportedRegions()) {
-                    try {
-                        phoneNumber = phoneUtil.parse(phone, regionCode);
-                    } catch (NumberParseException e) {
-                        System.err.println("NumberParseException was thrown: " + e);
-                    }
-                }
-        return phoneUtil.isValidNumber(phoneNumber);
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getUserPic() {
-        return userPic;
-    }
-
-    public void setUserPic(String userPic) {
-        this.userPic = userPic;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        if (isValidPhoneNumber(phone)) {
-            this.phone = phone;
-        }
-    }
-
-    public Student() {
-
-    }
-
 }

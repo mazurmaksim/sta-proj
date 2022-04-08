@@ -1,9 +1,16 @@
 package net.students.accounting.entity;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
 @Table(name = "tax_dictionary")
 public class TaxDictionary {
 
@@ -39,44 +46,4 @@ public class TaxDictionary {
 
     @Column(name = "date")
     private LocalDate date;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Double getArmyTax() {
-        return armyTax;
-    }
-
-    public void setArmyTax(Double armyTax) {
-        this.armyTax = armyTax;
-    }
-
-    public Double getIncomeTax() {
-        return incomeTax;
-    }
-
-    public void setIncomeTax(Double incomeTax) {
-        this.incomeTax = incomeTax;
-    }
-
-    public Double getSubsistenceLevel() {
-        return subsistenceLevel;
-    }
-
-    public void setSubsistenceLevel(Double subsistenceLevel) {
-        this.subsistenceLevel = subsistenceLevel;
-    }
-
-    public LocalDate getDate() {
-        return date;
-    }
-
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
 }
